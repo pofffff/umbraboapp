@@ -7,7 +7,6 @@ import {
 } from 'components'
 import { StyleSheet, View } from 'react-native'
 
-import { FC } from 'react'
 import { LoginUserInput } from 'types'
 import { spacing } from 'variables'
 import { useAuth } from 'context'
@@ -17,7 +16,7 @@ interface SignInScreenProps extends LoginUserInput {
   setSignUp(bol: boolean): void
 }
 
-export const SignInScreen: FC<SignInScreenProps> = ({ setSignUp }) => {
+export const SignInScreen: React.FC<SignInScreenProps> = ({ setSignUp }) => {
   const { signIn } = useAuth()
 
   const {

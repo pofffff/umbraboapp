@@ -9,14 +9,13 @@ import {
 import { StyleSheet, View } from 'react-native'
 
 import { CATEGORY_COLLECTION } from 'services/api'
-import { FC } from 'react'
 import { nullFilter } from 'utils'
 import { useAuth } from 'context'
 import { useQuery } from '@apollo/client'
 
 interface ActivitiesScreenProps {}
 
-export const ArchiveScreen: FC<ActivitiesScreenProps> = () => {
+export const ArchiveScreen: React.FC<ActivitiesScreenProps> = () => {
   const { userId } = useAuth()
   const { data } = useQuery<CategoryCollectionResult>(CATEGORY_COLLECTION, {
     variables: { userId }

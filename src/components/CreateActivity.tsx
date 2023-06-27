@@ -57,8 +57,8 @@ export const CreateActivity: React.FC = () => {
     setValue('startDate', date)
   }
 
-  const onSubmit = async (data: CreateActivityInput) => {
-    const { label, categoryId, startDate } = data
+  const onSubmit = async (idata: CreateActivityInput) => {
+    const { label, categoryId, startDate } = idata
     if (label && categoryId) {
       CreateActivityMutation({
         variables: {
