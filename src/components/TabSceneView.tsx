@@ -39,16 +39,10 @@ type Route = {
 type State = NavigationState<Route>
 
 const renderScene: React.FC<Route> = ({ key }) => {
-  console.log({ key })
   switch (key) {
     case ACTIVITIES_SCREEN:
-      console.log('or here')
-      // return <Text>hej 1</Text>
-
       return <ActivitiesScreen />
     case ARCHIVE_SCREEN:
-      console.log('here')
-      // return <Text>hej 2</Text>
       return <ArchiveScreen />
 
     default:
@@ -74,7 +68,6 @@ export const TabSceneView = () => {
       tabBar: true
     }
   ])
-  console.log(index)
   const renderIcon = ({ route }: { route: Route; color: string }) => (
     <Icon name={route.icon} size={24} />
   )

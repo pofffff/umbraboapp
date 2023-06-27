@@ -32,3 +32,9 @@ export interface CreateActivityInput {
   label?: string
   startDate?: Date
 }
+
+export interface CreateTimeRecordInput {
+  activityId?: string
+  amount?: number
+  date?: Date
+}

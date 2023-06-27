@@ -41,7 +41,6 @@ export const AuthProvider = memo(({ children }: JSXComponentProps) => {
   >(SIGN_IN_USER)
 
   const signIn = (email: string, password: string) => {
-    console.log(email, password)
     signInQuery({
       variables: {
         input: { email, password }
@@ -55,7 +54,6 @@ export const AuthProvider = memo(({ children }: JSXComponentProps) => {
   }
 
   useEffect(() => {
-    console.log(data)
     if (data?.loginUser) {
       setValue(TOKEN_KEY, data.loginUser.token)
       setValue(USER_ID_KEY, data.loginUser.userId)

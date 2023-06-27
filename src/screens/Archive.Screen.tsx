@@ -3,7 +3,8 @@ import {
   CategoryContainer,
   CreateActivity,
   CreateCategory,
-  Headline
+  Headline,
+  RegularText
 } from '../components'
 import { StyleSheet, View } from 'react-native'
 
@@ -37,12 +38,14 @@ export const ArchiveScreen: React.FC<ActivitiesScreenProps> = () => {
 
   return (
     <>
-      <Headline type={'$xl'} text={'Activities'} />
-      {data?.categoryCollection.categories && (
+      <Headline type={'$xl'} text={'Archive'} />
+      {data?.categoryCollection.categories ? (
         <View style={styles.categoryList}>
           {data?.categoryCollection?.categories?.length > 0 &&
             renderCategories()}
         </View>
+      ) : (
+        <RegularText text={'No categories found'} style={undefined} />
       )}
 
       <View style={styles.actionsWrapper}>

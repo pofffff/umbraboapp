@@ -31,8 +31,9 @@ export const IconButton: React.FC<IconButtonProps> = ({
 const styles = StyleSheet.create({
   iconButtonContainer: {
     flex: 1,
-    flexDirection: 'column'
-    // alignItems: 'center'
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
 
   alignRight: {

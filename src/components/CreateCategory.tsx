@@ -33,21 +33,20 @@ export const CreateCategory: React.FC = () => {
 
   const onSubmit = async (data: CreateCategoryInput) => {
     const { title } = data
+    if (!title) return
 
-    if (title) {
-      CreateCategoryMutation({
-        variables: {
-          userId: await getValue(USER_ID_KEY),
-          input: { title: title }
-        },
-        refetchQueries: [
-          {
-            query: CATEGORY_COLLECTION,
-            variables: { userId: userId }
-          }
-        ]
-      })
-    }
+    CreateCategoryMutation({
+      variables: {
+        userId: await getValue(USER_ID_KEY),
+        input: { title }
+      },
+      refetchQueries: [
+        {
+          query: CATEGORY_COLLECTION,
+          variables: { userId }
+        }
+      ]
+    })
   }
 
   useEffect(() => {

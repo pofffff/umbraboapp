@@ -63,42 +63,41 @@ export const CreateActivity: React.FC = () => {
 
   const onSubmit = async (idata: CreateActivityInput) => {
     const { label, categoryId, startDate } = idata
-    if (label && categoryId) {
-      CreateActivityMutation({
-        variables: {
-          userId: await getValue(USER_ID_KEY),
-          input: {
-            label,
-            categoryId,
-            startDate: startDate ? startDate : new Date()
-          }
-        },
-        refetchQueries: [
-          {
-            query: CATEGORY_COLLECTION,
-            variables: { userId: userId }
-          }
-        ]
-        // TODO Refactor refetch whole collection everytime
-        // update(cache, { data }) {
-        //     console.log(cache)
-        //     console.log(data.createChore)
-        //     if (!data) {
-        //         return
-        //     }
+    if (!label || !categoryId) return
+    CreateActivityMutation({
+      variables: {
+        userId: await getValue(USER_ID_KEY),
+        input: {
+          label,
+          categoryId,
+          startDate: startDate ? startDate : new Date()
+        }
+      },
+      refetchQueries: [
+        {
+          query: CATEGORY_COLLECTION,
+          variables: { userId: userId }
+        }
+      ]
+      // TODO Refactor refetch whole collection everytime
+      // update(cache, { data }) {
+      //     console.log(cache)
+      //     console.log(data.createChore)
+      //     if (!data) {
+      //         return
+      //     }
 
-        //     cache.modify({
-        //         id: cache.identify(makeReference('ROOT_QUERY')),
-        //         fields: {
-        //             categoryCollection: (previous, { toReference }) => {
-        //                 const cat = previous.find(())
-        //                 return [...previous, data.createChore]
-        //             }
-        //         }
-        //     })
-        // }
-      })
-    }
+      //     cache.modify({
+      //         id: cache.identify(makeReference('ROOT_QUERY')),
+      //         fields: {
+      //             categoryCollection: (previous, { toReference }) => {
+      //                 const cat = previous.find(())
+      //                 return [...previous, data.createChore]
+      //             }
+      //         }
+      //     })
+      // }
+    })
   }
 
   useEffect(() => {
