@@ -1,1 +1,1 @@
-export * from './categoryCollectionResult.Types'
+export * from './categoryCollectionResult.type'
