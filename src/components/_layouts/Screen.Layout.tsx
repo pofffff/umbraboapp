@@ -1,8 +1,8 @@
 import { StyleSheet, View } from 'react-native'
-import { colors, spacing } from 'variables'
+import { colors, spacing } from '../../variables'
 
 import { ScrollLayout } from './Scroll.Layout'
-import { JSXComponentProps } from 'types'
+import { JSXComponentProps } from '../../types'
 
 interface ScreenLayoutProps extends JSXComponentProps {}
 
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: colors.$plainWhite,
-    marginHorizontal: '12%',
+    paddingHorizontal: '3%',
     paddingVertical: spacing.$s
   }
 })

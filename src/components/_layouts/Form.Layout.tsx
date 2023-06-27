@@ -1,5 +1,5 @@
 import { StyleSheet, View } from 'react-native'
-import { JSXComponentProps } from 'types'
+import { JSXComponentProps } from '../../types'
 
 interface FormLayoutProps extends JSXComponentProps {}
 

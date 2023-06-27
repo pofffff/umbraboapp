@@ -1,8 +1,10 @@
-import { Icon, IconButton, RegularText } from 'components'
+import { RegularText } from '../components'
+import { IconButton } from './_elements'
+import { Icon } from './_icons'
 import { StyleSheet, View } from 'react-native'
-import { colors, font, fontSize, spacing } from 'variables'
+import { colors, font, fontSize, spacing } from '../variables'
 
-import { formatDateShort } from 'utils'
+import { formatDateShort } from '../utils'
 
 interface ActivityDetailsBoxProps {
   endDate?: Date
@@ -58,8 +60,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   detailColumn: {
-    // flex: 1,
-    // flexDirection: 'column'
+    flex: 1,
+    flexDirection: 'column',
     paddingHorizontal: spacing.$s
   },
   label: {

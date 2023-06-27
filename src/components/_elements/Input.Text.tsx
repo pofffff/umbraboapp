@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { KeyboardTypeOptions, StyleSheet, TextInput, View } from 'react-native'
-import { colors, font, fontSize, spacing } from 'variables'
+import { colors, font, fontSize, spacing } from '../../variables'
 
 import { Controller } from 'react-hook-form'
-import { ReactHookForm } from 'types'
+import { ReactHookForm } from '../../types'
 import { RegularText } from './Text.Regular'
 
 interface InputTextProps extends ReactHookForm {

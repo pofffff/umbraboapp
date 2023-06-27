@@ -1,29 +1,33 @@
-import { CATEGORIES, CATEGORY_COLLECTION, CREATE_ACTIVITY } from 'services/api'
+import {
+  CATEGORIES,
+  CATEGORY_COLLECTION,
+  CREATE_ACTIVITY
+} from '../services/api'
 import {
   Category,
   CategoryCollectionResult,
   CreateActivityInput,
   QueryCategoryCollectionArgs
-} from 'types'
+} from '../types'
 import { useEffect, useState } from 'react'
+
+import { Modal, StyleSheet, View } from 'react-native'
+import { USER_ID_KEY, colors, spacing } from '../variables'
+import { useLazyQuery, useMutation } from '@apollo/client'
+
+import { useAuth } from '../context'
+import { useForm } from 'react-hook-form'
+import { useSecureStore } from '../hooks'
+import { Icon } from './_icons'
 import {
-  FormLayout,
   Headline,
-  Icon,
   IconButton,
   InputDate,
   InputSelect,
   InputText,
-  ScreenLayout,
   TextButton
-} from 'components'
-import { Modal, StyleSheet, View } from 'react-native'
-import { USER_ID_KEY, colors, spacing } from 'variables'
-import { useLazyQuery, useMutation } from '@apollo/client'
-
-import { useAuth } from 'context'
-import { useForm } from 'react-hook-form'
-import { useSecureStore } from 'hooks'
+} from './_elements'
+import { ScreenLayout, FormLayout } from './_layouts'
 
 export const CreateActivity: React.FC = () => {
   const { getValue } = useSecureStore()
@@ -43,7 +47,7 @@ export const CreateActivity: React.FC = () => {
     getValues,
     setValue,
     handleSubmit,
-    formState: { errors, isValid }
+    formState: {}
   } = useForm<CreateActivityInput>({
     defaultValues: {
       label: '',

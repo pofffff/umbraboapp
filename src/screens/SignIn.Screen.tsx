@@ -1,15 +1,9 @@
-import {
-  FormLayout,
-  Headline,
-  InputText,
-  ScreenLayout,
-  TextButton
-} from 'components'
+import { FormLayout, Headline, InputText, TextButton } from '../components'
 import { StyleSheet, View } from 'react-native'
 
-import { LoginUserInput } from 'types'
-import { spacing } from 'variables'
-import { useAuth } from 'context'
+import { LoginUserInput } from '../types'
+import { spacing } from '../variables'
+import { useAuth } from '../context'
 import { useForm } from 'react-hook-form'
 
 interface SignInScreenProps extends LoginUserInput {
@@ -40,43 +34,34 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({ setSignUp }) => {
   }
 
   return (
-    <ScreenLayout>
-      {/* <IconButton
-                style={{ marginTop: spacing.$xl }}
-                alignRight={true}
-                onPress={() => setSignUp(true)}
-            >
-                <Icon name="user-follow" size={36} />
-            </IconButton> */}
-      <FormLayout>
-        <Headline type={'$xl'} text={'Login'} />
-        <InputText
-          label={'Email'}
-          name={'email'}
-          keyboardType={'email-address'}
-          control={control}
-          getFieldState={getFieldState}
-          rules={{
-            required: true
-          }}
-        />
-        <InputText
-          label={'Password'}
-          name={'password'}
-          secureTextEntry={true}
-          control={control}
-          getFieldState={getFieldState}
-          rules={{
-            required: true
-          }}
-          keyboardType={undefined}
-        />
-        <View style={styles.marginTop}>
-          <TextButton text={'Enter'} onPress={handleSubmit(onSubmit)} primary />
-          <TextButton text={'Sign up'} onPress={() => setSignUp(true)} />
-        </View>
-      </FormLayout>
-    </ScreenLayout>
+    <FormLayout>
+      <Headline type={'$xl'} text={'Login'} />
+      <InputText
+        label={'Email'}
+        name={'email'}
+        keyboardType={'email-address'}
+        control={control}
+        getFieldState={getFieldState}
+        rules={{
+          required: true
+        }}
+      />
+      <InputText
+        label={'Password'}
+        name={'password'}
+        secureTextEntry={true}
+        control={control}
+        getFieldState={getFieldState}
+        rules={{
+          required: true
+        }}
+        keyboardType={undefined}
+      />
+      <View style={styles.marginTop}>
+        <TextButton text={'Enter'} onPress={handleSubmit(onSubmit)} primary />
+        <TextButton text={'Sign up'} onPress={() => setSignUp(true)} />
+      </View>
+    </FormLayout>
   )
 }
 

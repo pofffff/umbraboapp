@@ -1,16 +1,15 @@
-import { Category, CategoryCollectionResult } from 'types'
+import { Category, CategoryCollectionResult } from '../types'
 import {
   CategoryContainer,
   CreateActivity,
   CreateCategory,
-  Headline,
-  ScreenLayout
-} from 'components'
+  Headline
+} from '../components'
 import { StyleSheet, View } from 'react-native'
 
-import { CATEGORY_COLLECTION } from 'services/api'
-import { nullFilter } from 'utils'
-import { useAuth } from 'context'
+import { CATEGORY_COLLECTION } from '../services/api'
+import { nullFilter } from '../utils'
+import { useAuth } from '../context'
 import { useQuery } from '@apollo/client'
 
 interface ActivitiesScreenProps {}
@@ -21,22 +20,28 @@ export const ActivitiesScreen: React.FC<ActivitiesScreenProps> = () => {
     variables: { userId }
   })
 
+  const renderCategories = () => {
+    if (data?.categoryCollection.categories) {
+      return data.categoryCollection.categories
+        .filter(nullFilter)
+        .map((category: Category) => {
+          return (
+            <CategoryContainer
+              category={category}
+              key={`Category-${category.id}`}
+            />
+          )
+        })
+    }
+  }
+
   return (
-    <ScreenLayout>
+    <View style={styles.container}>
       <Headline type={'$xl'} text={'Activities'} />
       {data?.categoryCollection.categories && (
         <View style={styles.categoryList}>
           {data?.categoryCollection?.categories?.length > 0 &&
-            data.categoryCollection.categories
-              .filter<Category>(nullFilter)
-              .map(category => {
-                return (
-                  <CategoryContainer
-                    category={category}
-                    key={`Category-${category.id}`}
-                  />
-                )
-              })}
+            renderCategories()}
         </View>
       )}
 
@@ -44,14 +49,20 @@ export const ActivitiesScreen: React.FC<ActivitiesScreenProps> = () => {
         <CreateCategory />
         <CreateActivity />
       </View>
-    </ScreenLayout>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
   actionsWrapper: {
     flex: 1,
-    flexDirection: 'row'
+    justifyContent: 'center',
+    //alignItems: 'center',
+    flexDirection: 'row',
+    bottom: 0
   },
   categoryList: {
     flex: 1,

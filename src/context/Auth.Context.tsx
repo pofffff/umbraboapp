@@ -4,12 +4,12 @@ import {
   QueryLoginUserPayload
 } from '../types'
 import React, { memo, useContext, useEffect, useMemo, useState } from 'react'
-import { TOKEN_KEY, USER_ID_KEY } from 'variables'
+import { TOKEN_KEY, USER_ID_KEY } from '../variables'
 
-import { SIGN_IN_USER } from 'services/api'
-import { getApolloClient } from 'services/apollo'
+import { SIGN_IN_USER } from '../services/api'
+import { getApolloClient } from '../services/apollo'
 import { useLazyQuery } from '@apollo/client'
-import { useSecureStore } from 'hooks'
+import { useSecureStore } from '../hooks'
 
 export interface AuthContextValue {
   signIn(email: string, password: string): void
@@ -31,11 +31,11 @@ export const AuthContext = React.createContext<AuthContextValue>(
 
 export const AuthProvider = memo(({ children }: JSXComponentProps) => {
   const apolloClient = getApolloClient()
-  const { deleteValue, setValue, _getValue } = useSecureStore()
+  const { deleteValue, setValue } = useSecureStore()
   const [authenticated, setAuthenticated] = useState<boolean>(false)
   const [userId, setUserId] = useState<string | undefined>()
 
-  const [signInQuery, { data, _loading, error }] = useLazyQuery<
+  const [signInQuery, { data, error }] = useLazyQuery<
     QueryLoginUserPayload,
     QueryLoginUserArgs
   >(SIGN_IN_USER)
@@ -55,6 +55,7 @@ export const AuthProvider = memo(({ children }: JSXComponentProps) => {
   }
 
   useEffect(() => {
+    console.log(data)
     if (data?.loginUser) {
       setValue(TOKEN_KEY, data.loginUser.token)
       setValue(USER_ID_KEY, data.loginUser.userId)

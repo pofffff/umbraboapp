@@ -15,7 +15,13 @@ import {
 } from 'react-native-tab-view'
 
 import { Icon } from './_icons'
-import { useWindowDimensions } from 'react-native'
+import {
+  Dimensions,
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions
+} from 'react-native'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 interface RenderSceneProps {
@@ -27,15 +33,22 @@ type Route = {
   key: string
   icon: React.ComponentProps<typeof MaterialCommunityIcons>['name']
   tabBar: boolean
+  title?: string
 }
 
 type State = NavigationState<Route>
 
-const renderScene: React.FC<RenderSceneProps> = ({ route }) => {
-  switch (route.key) {
+const renderScene: React.FC<Route> = ({ key }) => {
+  console.log({ key })
+  switch (key) {
     case ACTIVITIES_SCREEN:
+      console.log('or here')
+      // return <Text>hej 1</Text>
+
       return <ActivitiesScreen />
     case ARCHIVE_SCREEN:
+      console.log('here')
+      // return <Text>hej 2</Text>
       return <ArchiveScreen />
 
     default:
@@ -45,16 +58,23 @@ const renderScene: React.FC<RenderSceneProps> = ({ route }) => {
 
 export const TabSceneView = () => {
   const layout = useWindowDimensions()
+  const deviceHeight = Dimensions.get('window').height
   const [index, setIndex] = useState(0)
   const [routes] = useState<Route[]>([
     {
       key: ACTIVITIES_SCREEN,
       icon: 'format-list-bulleted-square',
       tabBar: true
+      // title: 'hej1'
     },
-    { key: ARCHIVE_SCREEN, icon: 'archive-outline', tabBar: true }
+    {
+      key: ARCHIVE_SCREEN,
+      icon: 'archive-outline',
+      // title: 'hej2',
+      tabBar: true
+    }
   ])
-
+  console.log(index)
   const renderIcon = ({ route }: { route: Route; color: string }) => (
     <Icon name={route.icon} size={24} />
   )
@@ -65,28 +85,35 @@ export const TabSceneView = () => {
     <TabBar
       {...props}
       renderIcon={renderIcon}
+      // renderLabel={({ route, color }) => null}
       style={{ backgroundColor: colors.$plainWhite }}
-      labelStyle={{
-        color: colors.$black,
-        fontFamily: font.$primary__regular,
-        letterSpacing: 1,
-        fontSize: fontSize.$xs
-      }}
+      labelStyle={styles.label}
       indicatorStyle={{ backgroundColor: colors.$black }}
     />
   )
   // https://github.com/satya164/react-native-tab-view/blob/main/example/src/TabBarIconExample.tsx
   return (
-    <TabView
-      navigationState={{
-        index,
-        routes
-      }}
-      renderScene={renderScene}
-      onIndexChange={setIndex}
-      initialLayout={{ width: layout.width, height: layout.height }}
-      tabBarPosition={'bottom'}
-      renderTabBar={renderTabBar}
-    />
+    <View style={{ height: deviceHeight - 20 }}>
+      <TabView
+        navigationState={{
+          index,
+          routes
+        }}
+        renderScene={({ route }) => renderScene(route)}
+        onIndexChange={setIndex}
+        initialLayout={{ width: layout.width }}
+        tabBarPosition={'bottom'}
+        renderTabBar={renderTabBar}
+      />
+    </View>
   )
 }
+
+const styles = StyleSheet.create({
+  label: {
+    color: colors.$black,
+    fontFamily: font.$primary__regular,
+    letterSpacing: 1,
+    fontSize: fontSize.$xs
+  }
+})

@@ -1,21 +1,16 @@
 import { useEffect, useState } from 'react'
-import {
-  FormLayout,
-  Headline,
-  Icon,
-  IconButton,
-  InputText,
-  ScreenLayout,
-  TextButton
-} from 'components'
-import { Modal, StyleSheet, View } from 'react-native'
-import { USER_ID_KEY, colors, spacing } from 'variables'
-import { useCategory, useSecureStore } from 'hooks'
 
-import { CATEGORY_COLLECTION } from 'services/api'
-import { CreateCategoryInput } from 'types'
-import { useAuth } from 'context'
+import { Modal, StyleSheet, View } from 'react-native'
+import { USER_ID_KEY, colors, spacing } from '../variables'
+import { useCategory, useSecureStore } from '../hooks'
+
+import { CATEGORY_COLLECTION } from '../services/api'
+import { CreateCategoryInput } from '../types'
+import { useAuth } from '../context'
 import { useForm } from 'react-hook-form'
+import { Headline, IconButton, InputText, TextButton } from './_elements'
+import { ScreenLayout, FormLayout } from './_layouts'
+import { Icon } from './_icons'
 
 export const CreateCategory: React.FC = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false)
@@ -28,7 +23,7 @@ export const CreateCategory: React.FC = () => {
     control,
     getFieldState,
     handleSubmit,
-    formState: { errors, isValid }
+    formState: {}
   } = useForm<CreateCategoryInput>({
     defaultValues: {
       title: ''
@@ -96,6 +91,7 @@ export const CreateCategory: React.FC = () => {
           </FormLayout>
         </ScreenLayout>
       </Modal>
+
       <TextButton text={'+ Category'} onPress={() => setModalVisible(true)} />
     </View>
   )

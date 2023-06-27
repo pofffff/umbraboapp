@@ -1,10 +1,11 @@
 import { useState } from 'react'
-import { Icon, IconButton } from 'components'
+import { Icon } from '../_icons'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { colors, font, fontSize, spacing } from 'variables'
+import { colors, font, fontSize, spacing } from '../../variables'
 
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
 import { RegularText } from './Text.Regular'
+import { IconButton } from './Button.Icon'
 
 interface InputDateProps {
   label: string

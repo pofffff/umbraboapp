@@ -2,3 +2,4 @@ jest.setup.js
 jest.config.js
 react-native.config.js
 .eslintrc.js
+graphql.ts

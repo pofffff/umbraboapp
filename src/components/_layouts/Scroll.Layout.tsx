@@ -1,5 +1,5 @@
 import { ScrollView, StyleSheet, View } from 'react-native'
-import { JSXComponentProps } from 'types'
+import { JSXComponentProps } from '../../types'
 
 interface ScrollLayoutProps extends JSXComponentProps {}
 

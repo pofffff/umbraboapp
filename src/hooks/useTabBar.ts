@@ -1,14 +1,14 @@
 import { useState } from 'react'
 
 export const useTabBar = () => {
-    const [tabKey, setTabKey] = useState<string>()
+  const [tabKey, setTabKey] = useState<string>()
 
-    const navigateTo = (key: string) => {
-        setTabKey(key)
-    }
-    // useEffect(() => {
+  const navigateTo = (key: string) => {
+    setTabKey(key)
+  }
+  // useEffect(() => {
 
-    // }, [])
+  // }, [])
 
-    return { navigateTo, tabKey }
+  return { navigateTo, tabKey }
 }

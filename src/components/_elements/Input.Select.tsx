@@ -1,11 +1,12 @@
-import { Category, ReactHookForm } from 'types'
+import { Category, ReactHookForm } from '../../types'
 import { useEffect, useState } from 'react'
-import { Icon, RegularText } from 'components'
 import { StyleSheet, View } from 'react-native'
-import { colors, font, fontSize, spacing } from 'variables'
+import { colors, font, fontSize, spacing } from '../../variables'
 
 import { Controller } from 'react-hook-form'
 import SelectDropdown from 'react-native-select-dropdown'
+import { RegularText } from './Text.Regular'
+import { Icon } from '../_icons'
 
 interface InputSelectProps extends ReactHookForm {
   label: string
@@ -82,7 +83,11 @@ export const InputSelect: React.FC<InputSelectProps> = ({
                 return item.title
               }}
               renderDropdownIcon={(isOpened: boolean) => {
-                return isOpened ? <Icon name={'up'} /> : <Icon name={'down'} />
+                return isOpened ? (
+                  <Icon name={'menu-up'} />
+                ) : (
+                  <Icon name={'menu-down'} />
+                )
               }}
             />
           )}

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
-import { colors, font, fontSize, spacing } from 'variables'
+import { colors, font, fontSize, spacing } from '../../variables'
 
 interface TextButtonProps {
   text: string
@@ -14,10 +14,8 @@ export const TextButton: React.FC<TextButtonProps> = ({
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={[styles.buttonContainer, primary ? styles.primary : null]}>
-      <Text style={[styles.buttonText, primary ? styles.primary : null]}>
-        {text}
-      </Text>
+      style={[styles.buttonContainer, primary && styles.primary]}>
+      <Text style={[styles.buttonText, primary && styles.primary]}>{text}</Text>
     </TouchableOpacity>
   )
 }
@@ -35,6 +33,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: fontSize.$s,
+    color: colors.$black,
     fontFamily: font.$primary__medium,
     letterSpacing: 1
   },

@@ -1,10 +1,11 @@
-import { Activity, Category } from 'types'
-import { ActivityDetailsBox, RegularText } from 'components'
+import { Activity, Category } from '../types'
+import { RegularText } from './_elements'
 import { memo, useState } from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { colors, font, fontSize, spacing } from 'variables'
+import { colors, font, fontSize, spacing } from '../variables'
 
-import { nullFilter } from 'utils'
+import { nullFilter } from '../utils'
+import { ActivityDetailsBox } from './ActivityDetailsBox'
 
 interface CategoryContainerProps {
   category: Category
@@ -24,7 +25,7 @@ export const CategoryContainer: React.FC<CategoryContainerProps> = memo(
           </View>
           {categoryVisible &&
             category.activities &&
-            category.activities.filter<Activity>(nullFilter).map(activity => {
+            category.activities.filter(nullFilter).map((activity: Activity) => {
               return (
                 <TouchableOpacity
                   onPress={() => setVisibleActivity(activity)}
