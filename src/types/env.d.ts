@@ -1,3 +1,3 @@
 declare module '@env' {
-    export const GRAPHQL_URL: string;
+  export const GRAPHQL_URL: string
 }

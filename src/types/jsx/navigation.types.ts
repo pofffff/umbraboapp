@@ -1,4 +1,3 @@
 export interface JumpTo {
-    jumpTo(scene: string): void
-
+  jumpTo(scene: string): void
 }

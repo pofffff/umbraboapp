@@ -1,20 +1,24 @@
 import { ApolloProvider } from '@apollo/client'
 import { AuthProvider } from './Auth.Context'
 import { NativeBaseProvider } from 'native-base'
-import React from 'react'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { getApolloClient } from 'services/apollo'
+import { JSXComponentProps } from 'types'
 
-export const AppProvider: React.FunctionComponent = ({ children }) => {
-    const client = getApolloClient()
+interface AppProviderProps extends JSXComponentProps {
+  children: React.ReactNode
+}
 
-    return (
-        <ApolloProvider client={client}>
-            <AuthProvider>
-                <NativeBaseProvider>
-                    <SafeAreaProvider>{children}</SafeAreaProvider>
-                </NativeBaseProvider>
-            </AuthProvider>
-        </ApolloProvider>
-    )
+export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
+  const client = getApolloClient()
+
+  return (
+    <ApolloProvider client={client}>
+      <AuthProvider>
+        <NativeBaseProvider>
+          <SafeAreaProvider>{children}</SafeAreaProvider>
+        </NativeBaseProvider>
+      </AuthProvider>
+    </ApolloProvider>
+  )
 }

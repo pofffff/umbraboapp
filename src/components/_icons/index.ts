@@ -1,1 +1,1 @@
-export * from './vector-icons';
+export * from './vector-icons'

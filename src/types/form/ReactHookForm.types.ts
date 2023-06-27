@@ -5,30 +5,30 @@ import { Control, FieldValues, UseFormGetFieldState } from 'react-hook-form'
 // }
 
 export interface ReactHookForm {
-    control: Control<FieldValues, any>
-    // register: UseFormRegister<FieldValues>
-    // getValues: UseFormGetValues<FieldValues>
-    getFieldState: UseFormGetFieldState<FieldValues>
+  control: Control<FieldValues, any>
+  // register: UseFormRegister<FieldValues>
+  // getValues: UseFormGetValues<FieldValues>
+  getFieldState: UseFormGetFieldState<FieldValues>
 }
 
 export interface LoginUserInput {
-    email?: string
-    password?: string
+  email?: string
+  password?: string
 }
 
 export interface CreateUserInput {
-    displayName?: string
-    email?: string
-    password?: string
-    passwordControl?: string
+  displayName?: string
+  email?: string
+  password?: string
+  passwordControl?: string
 }
 
 export interface CreateCategoryInput {
-    title?: string
+  title?: string
 }
 
 export interface CreateActivityInput {
-    categoryId?: string
-    label?: string
-    startDate?: Date
+  categoryId?: string
+  label?: string
+  startDate?: Date
 }

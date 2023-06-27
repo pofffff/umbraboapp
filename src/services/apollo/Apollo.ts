@@ -7,28 +7,28 @@ import { setContext } from '@apollo/client/link/context'
 import { useSecureStore } from 'hooks'
 
 const httpLink = createHttpLink({
-    uri: GRAPHQL_URL
+  uri: GRAPHQL_URL
 })
 
-const authLink = setContext(async (_) => {
-    const { getValue } = useSecureStore()
-    const token = await getValue(TOKEN_KEY)
-    const authorization = {
-        authorization: `Bearer ${token}`
+const authLink = setContext(async () => {
+  const { getValue } = useSecureStore()
+  const token = await getValue(TOKEN_KEY)
+  const authorization = {
+    authorization: `Bearer ${token}`
+  }
+  return {
+    headers: {
+      ...(token ? authorization : {})
     }
-    return {
-        headers: {
-            ...(token ? authorization : {})
-        }
-    }
+  }
 })
 
 const apolloClient = new ApolloClient({
-    link: authLink.concat(httpLink),
-    cache: new InMemoryCache(),
-    name: 'Activities'
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+  name: 'Activities'
 })
 
 export const getApolloClient = (): FactoryApolloClient => {
-    return apolloClient
+  return apolloClient
 }

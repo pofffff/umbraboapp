@@ -1,16 +1,17 @@
-import * as React from 'react'
-
 import { StyleSheet, View } from 'react-native'
+import { JSXComponentProps } from 'types'
 
-export const FormLayout: React.FunctionComponent = ({ children }) => {
-    return <View style={styles.layoutWrapper}>{children}</View>
+interface FormLayoutProps extends JSXComponentProps {}
+
+export const FormLayout: React.FC<FormLayoutProps> = ({ children }) => {
+  return <View style={styles.layoutWrapper}>{children}</View>
 }
 
 export const styles = StyleSheet.create({
-    layoutWrapper: {
-        flex: 1,
-        flexGrow: 1,
-        flexDirection: 'column',
-        marginVertical: 20
-    }
+  layoutWrapper: {
+    flex: 1,
+    flexGrow: 1,
+    flexDirection: 'column',
+    marginVertical: 20
+  }
 })
