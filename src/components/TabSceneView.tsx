@@ -6,7 +6,7 @@ import {
   fontSize
 } from '../variables'
 import { ActivitiesScreen, ArchiveScreen } from '../screens'
-import { useState } from 'react'
+import { Dimensions, StyleSheet, View, useWindowDimensions } from 'react-native'
 import {
   NavigationState,
   SceneRendererProps,
@@ -15,14 +15,8 @@ import {
 } from 'react-native-tab-view'
 
 import { Icon } from './_icons'
-import {
-  Dimensions,
-  StyleSheet,
-  Text,
-  View,
-  useWindowDimensions
-} from 'react-native'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import { useState } from 'react'
 
 interface RenderSceneProps {
   route: { key: string }

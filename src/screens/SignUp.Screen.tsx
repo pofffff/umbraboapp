@@ -1,10 +1,10 @@
-import { useEffect } from 'react'
 import { FormLayout, Headline, InputText, TextButton } from '../components'
 import { StyleSheet, View } from 'react-native'
 
 import { CreateUserInput } from '../types'
 import { SIGN_UP_USER } from '../services/api'
 import { spacing } from '../variables'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { useMutation } from '@apollo/client'
 
@@ -22,7 +22,7 @@ export const SignUpScreen: React.FC<SignUpScreenProps> = ({ setSignUp }) => {
     formState: { errors, isValid }
   } = useForm<CreateUserInput>({
     defaultValues: {
-      displayName: '',
+      name: '',
       email: '',
       password: '',
       passwordControl: ''
@@ -49,8 +49,8 @@ export const SignUpScreen: React.FC<SignUpScreenProps> = ({ setSignUp }) => {
     <FormLayout>
       <Headline type={'$xl'} text={'Sign up'} />
       <InputText
-        label={'Display name'}
-        name={'displayName'}
+        label={'Name'}
+        name={'name'}
         control={control}
         getFieldState={getFieldState}
         rules={{

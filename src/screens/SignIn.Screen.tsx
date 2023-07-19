@@ -20,8 +20,8 @@ export const SignInScreen: React.FC<SignInScreenProps> = ({ setSignUp }) => {
     formState: { errors, isValid }
   } = useForm<LoginUserInput>({
     defaultValues: {
-      email: '',
-      password: ''
+      email: 'hoglund.matilda@gmail.com',
+      password: '12345678'
     },
     mode: 'onChange'
   })

@@ -1,6 +1,6 @@
 import { Category, CategoryCollectionResult } from '../types'
 import {
-  CategoryContainer,
+  CategoryListItem,
   CreateActivity,
   CreateCategory,
   Headline,
@@ -27,7 +27,7 @@ export const ArchiveScreen: React.FC<ActivitiesScreenProps> = () => {
         .filter(nullFilter)
         .map((category: Category) => {
           return (
-            <CategoryContainer
+            <CategoryListItem
               category={category}
               key={`Category-${category.id}`}
             />
@@ -38,7 +38,7 @@ export const ArchiveScreen: React.FC<ActivitiesScreenProps> = () => {
 
   return (
     <>
-      <Headline type={'$xl'} text={'Archive'} />
+      <Headline type={'$m'} text={'Archive'} />
       {data?.categoryCollection.categories ? (
         <View style={styles.categoryList}>
           {data?.categoryCollection?.categories?.length > 0 &&

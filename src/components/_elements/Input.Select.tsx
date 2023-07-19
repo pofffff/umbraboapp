@@ -1,12 +1,12 @@
-import { Category, ReactHookForm } from '../../types'
-import { useEffect, useState } from 'react'
+import { Activity, Category, ReactHookForm } from '../../types'
 import { StyleSheet, View } from 'react-native'
 import { colors, font, fontSize, spacing } from '../../variables'
+import { useEffect, useState } from 'react'
 
 import { Controller } from 'react-hook-form'
-import SelectDropdown from 'react-native-select-dropdown'
-import { RegularText } from './Text.Regular'
 import { Icon } from '../_icons'
+import { RegularText } from './Text.Regular'
+import SelectDropdown from 'react-native-select-dropdown'
 
 interface InputSelectProps extends ReactHookForm {
   label: string
@@ -14,7 +14,7 @@ interface InputSelectProps extends ReactHookForm {
   secureTextEntry?: boolean
   // keyboardType?: KeyboardTypeOptions | undefined
   rules?: any
-  items: Category[]
+  items: Category[] | Activity[]
 }
 
 interface Option {
@@ -50,7 +50,7 @@ export const InputSelect: React.FC<InputSelectProps> = ({
   useEffect(() => {
     if (items) {
       let newArray = items.map(item => {
-        return { key: item.id, value: item.title }
+        return { key: item.id, value: item?.name }
       })
       //Set Data Variable
       setData(newArray)
@@ -68,19 +68,17 @@ export const InputSelect: React.FC<InputSelectProps> = ({
           render={({ field: { onChange } }) => (
             <SelectDropdown
               data={items}
-              onSelect={(selectedItem, _index) => {
-                return onChange(selectedItem.id)
-              }}
+              onSelect={(selectedItem, _index) => onChange(selectedItem.id)}
               defaultButtonText={'Select'}
               buttonStyle={styles.dropdownBtnStyle}
               buttonTextStyle={styles.dropdownBtnTxtStyle}
               rowStyle={styles.dropdownRowStyle}
               rowTextStyle={styles.dropdownRowTxtStyle}
               buttonTextAfterSelection={(selectedItem, _index) => {
-                return selectedItem.title
+                return selectedItem.name
               }}
               rowTextForSelection={(item, _index) => {
-                return item.title
+                return item.name
               }}
               renderDropdownIcon={(isOpened: boolean) => {
                 return isOpened ? (

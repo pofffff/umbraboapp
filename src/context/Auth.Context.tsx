@@ -3,8 +3,15 @@ import {
   QueryLoginUserArgs,
   QueryLoginUserPayload
 } from '../types'
-import React, { memo, useContext, useEffect, useMemo, useState } from 'react'
 import { TOKEN_KEY, USER_ID_KEY } from '../variables'
+import {
+  createContext,
+  memo,
+  useContext,
+  useEffect,
+  useMemo,
+  useState
+} from 'react'
 
 import { SIGN_IN_USER } from '../services/api'
 import { getApolloClient } from '../services/apollo'
@@ -25,7 +32,7 @@ export const defaultAuthContextValue: AuthContextValue = {
   userId: ''
 }
 
-export const AuthContext = React.createContext<AuthContextValue>(
+export const AuthContext = createContext<AuthContextValue>(
   defaultAuthContextValue
 )
 

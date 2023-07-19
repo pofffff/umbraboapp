@@ -1,4 +1,4 @@
-import { CategoryCollection } from 'types/_generated/graphql'
+import { CategoryCollection } from '../_generated/graphql'
 
 export interface CategoryCollectionResult {
   categoryCollection: CategoryCollection

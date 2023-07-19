@@ -28,7 +28,7 @@ export type Activity = {
   createdAt: Scalars['DateTime']['output'];
   endDate?: Maybe<Scalars['DateTime']['output']>;
   id: Scalars['ID']['output'];
-  label: Scalars['String']['output'];
+  name: Scalars['String']['output'];
   owner: User;
   startDate: Scalars['DateTime']['output'];
   timeRecords?: Maybe<Array<Maybe<TimeRecord>>>;
@@ -43,13 +43,13 @@ export type ActivityCollection = {
 
 export type ActivityCreateInput = {
   categoryId: Scalars['ID']['input'];
-  label: Scalars['String']['input'];
+  name: Scalars['String']['input'];
   startDate: Scalars['DateTime']['input'];
 };
 
 export type ActivityUpdateInput = {
   endDate?: InputMaybe<Scalars['DateTime']['input']>;
-  label?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
   startDate: Scalars['DateTime']['input'];
 };
 
@@ -68,8 +68,8 @@ export type Category = {
   __typename?: 'Category';
   activities?: Maybe<Array<Maybe<Activity>>>;
   id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
   owner: User;
-  title: Scalars['String']['output'];
 };
 
 export type CategoryAddActivitiesInput = {
@@ -83,7 +83,7 @@ export type CategoryCollection = {
 };
 
 export type CategoryCreateInput = {
-  title: Scalars['String']['input'];
+  name: Scalars['String']['input'];
 };
 
 export type CategoryRemoveActivityInput = {
@@ -92,7 +92,7 @@ export type CategoryRemoveActivityInput = {
 };
 
 export type CategoryUpdateInput = {
-  title: Scalars['String']['input'];
+  name: Scalars['String']['input'];
 };
 
 export type CreateUserPayload = {
@@ -276,14 +276,14 @@ export type TimeRecordUpdateInput = {
 export type User = {
   __typename?: 'User';
   createdAt: Scalars['DateTime']['output'];
-  displayName: Scalars['String']['output'];
   email: Scalars['String']['output'];
   id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
 };
 
 export type UserCreateInput = {
-  displayName: Scalars['String']['input'];
   email: Scalars['String']['input'];
+  name: Scalars['String']['input'];
   password: Scalars['String']['input'];
 };
 
@@ -293,5 +293,5 @@ export type UserLoginInput = {
 };
 
 export type UserUpdateInput = {
-  displayName?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
 };

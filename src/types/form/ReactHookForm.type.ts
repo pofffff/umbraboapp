@@ -17,23 +17,29 @@ export interface LoginUserInput {
 }
 
 export interface CreateUserInput {
-  displayName?: string
+  name?: string
   email?: string
   password?: string
   passwordControl?: string
 }
 
 export interface CreateCategoryInput {
-  title?: string
+  name?: string
 }
 
 export interface CreateActivityInput {
   categoryId?: string
-  label?: string
+  name?: string
   startDate?: Date
 }
 
 export interface CreateTimeRecordInput {
+  activityId?: string
+  amount?: number
+  date?: Date
+}
+
+export interface UpdateTimeRecordInput {
   activityId?: string
   amount?: number
   date?: Date

@@ -1,5 +1,10 @@
+import {
+  CREATE_TIME_RECORD,
+  DELETE_TIME_RECORDS,
+  UPDATE_TIME_RECORD
+} from '../services/api'
+
 import { useMutation } from '@apollo/client'
-import { CREATE_TIME_RECORD } from '../services/api'
 
 export const useTimeRecord = () => {
   const [
@@ -11,10 +16,36 @@ export const useTimeRecord = () => {
     }
   ] = useMutation(CREATE_TIME_RECORD)
 
+  const [
+    UpdateTimeRecordMutation,
+    {
+      data: updateTimeRecordData,
+      loading: updateTimeRecordLoading,
+      error: updateTimeRecordError
+    }
+  ] = useMutation(UPDATE_TIME_RECORD)
+
+  const [
+    DeleteTimeRecordsMutation,
+    {
+      data: deleteTimeRecordsData,
+      loading: deleteTimeRecordsLoading,
+      error: deleteTimeRecordsError
+    }
+  ] = useMutation(DELETE_TIME_RECORDS)
+
   return {
     CreateTimeRecordMutation,
     createTimeRecordData,
     createTimeRecordLoading,
-    createTimeRecordError
+    createTimeRecordError,
+    UpdateTimeRecordMutation,
+    updateTimeRecordData,
+    updateTimeRecordLoading,
+    updateTimeRecordError,
+    DeleteTimeRecordsMutation,
+    deleteTimeRecordsData,
+    deleteTimeRecordsLoading,
+    deleteTimeRecordsError
   }
 }

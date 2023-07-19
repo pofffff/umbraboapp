@@ -1,4 +1,4 @@
 export * from './useCategory'
-export * from './useSecureStore'
+export * from './useAsyncStorage'
 export * from './useTabBar'
 export * from './useTimeRecord'

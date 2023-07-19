@@ -1,48 +1,59 @@
-import { useState } from 'react'
-import { Icon } from '../_icons'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { colors, font, fontSize, spacing } from '../../variables'
 
+import { Controller } from 'react-hook-form'
 import DateTimePickerModal from 'react-native-modal-datetime-picker'
-import { RegularText } from './Text.Regular'
+import { Icon } from '../_icons'
 import { IconButton } from './Button.Icon'
+import { ReactHookForm } from '../../types'
+import { RegularText } from './Text.Regular'
+import { useState } from 'react'
 
-interface InputDateProps {
+interface InputDateProps extends ReactHookForm {
   label: string
-  date?: string
-  handleSetDate: (date: Date) => void
+  name: 'startDate' | 'date'
+  rules?: any
 }
 
 export const InputDate: React.FC<InputDateProps> = ({
+  control,
   label,
-  date,
-  handleSetDate
+  name,
+  rules
 }) => {
   const [datePickerVisible, setDatePickerVisible] = useState<boolean>(false)
-  // const [date, setDate] = useState(new Date())
-
-  const handleConfirm = (idate: Date) => {
-    handleSetDate(idate)
-    setDatePickerVisible(false)
-  }
 
   return (
     <View style={styles.wrapper}>
       <RegularText text={label} style={styles.startDateText} />
-      <TouchableOpacity onPress={() => setDatePickerVisible(true)}>
-        <View style={styles.startDate}>
-          <RegularText text={date || 'Date'} style={styles.inputText} />
-          <IconButton onPress={() => setDatePickerVisible(true)}>
-            <Icon name={'calendar'} />
-          </IconButton>
-          <DateTimePickerModal
-            isVisible={datePickerVisible}
-            mode="date"
-            onConfirm={handleConfirm}
-            onCancel={() => setDatePickerVisible(false)}
-          />
-        </View>
-      </TouchableOpacity>
+
+      <Controller
+        name={name}
+        control={control}
+        rules={rules}
+        render={({ field: { onChange, value } }) => (
+          <TouchableOpacity onPress={() => setDatePickerVisible(true)}>
+            <View style={styles.startDate}>
+              <RegularText
+                text={value?.toDateString() ?? 'Date'}
+                style={styles.inputText}
+              />
+              <IconButton onPress={() => setDatePickerVisible(true)}>
+                <Icon name={'calendar'} />
+              </IconButton>
+              <DateTimePickerModal
+                isVisible={datePickerVisible}
+                mode="date"
+                onConfirm={(d: Date) => {
+                  onChange(d)
+                  setDatePickerVisible(false)
+                }}
+                onCancel={() => setDatePickerVisible(false)}
+              />
+            </View>
+          </TouchableOpacity>
+        )}
+      />
     </View>
   )
 }

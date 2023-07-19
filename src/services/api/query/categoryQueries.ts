@@ -4,7 +4,7 @@ export const CATEGORIES = gql`
   query Categories($userId: ID!) {
     categoryCollection(userId: $userId) {
       categories {
-        title
+        name
         id
       }
     }
@@ -15,14 +15,14 @@ export const CATEGORY_COLLECTION = gql`
   query CategoryCollection($userId: ID!) {
     categoryCollection(userId: $userId) {
       categories {
-        title
+        name
         id
         activities {
           category {
             id
-            title
+            name
           }
-          label
+          name
           id
           startDate
           endDate

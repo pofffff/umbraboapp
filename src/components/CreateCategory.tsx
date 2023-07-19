@@ -1,16 +1,15 @@
-import { useEffect, useState } from 'react'
-
+import { FormLayout, ScreenLayout } from './_layouts'
+import { Headline, IconButton, InputText, TextButton } from './_elements'
 import { Modal, StyleSheet, View } from 'react-native'
 import { USER_ID_KEY, colors, spacing } from '../variables'
 import { useCategory, useSecureStore } from '../hooks'
+import { useEffect, useState } from 'react'
 
 import { CATEGORY_COLLECTION } from '../services/api'
 import { CreateCategoryInput } from '../types'
+import { Icon } from './_icons'
 import { useAuth } from '../context'
 import { useForm } from 'react-hook-form'
-import { Headline, IconButton, InputText, TextButton } from './_elements'
-import { ScreenLayout, FormLayout } from './_layouts'
-import { Icon } from './_icons'
 
 export const CreateCategory: React.FC = () => {
   const [modalVisible, setModalVisible] = useState<boolean>(false)
@@ -26,19 +25,19 @@ export const CreateCategory: React.FC = () => {
     formState: {}
   } = useForm<CreateCategoryInput>({
     defaultValues: {
-      title: ''
+      name: ''
     },
     mode: 'onChange'
   })
 
   const onSubmit = async (data: CreateCategoryInput) => {
-    const { title } = data
-    if (!title) return
+    const { name } = data
+    if (!name) return
 
     CreateCategoryMutation({
       variables: {
         userId: await getValue(USER_ID_KEY),
-        input: { title }
+        input: { name }
       },
       refetchQueries: [
         {
@@ -75,10 +74,10 @@ export const CreateCategory: React.FC = () => {
         </View>
         <ScreenLayout>
           <FormLayout>
-            <Headline text={'Create category'} type={'$xl'} />
+            <Headline text={'Create category'} type={'$m'} />
             <InputText
-              label={'Title'}
-              name={'title'}
+              label={'Name'}
+              name={'name'}
               control={control}
               getFieldState={getFieldState}
               rules={{
@@ -90,14 +89,17 @@ export const CreateCategory: React.FC = () => {
           </FormLayout>
         </ScreenLayout>
       </Modal>
-
       <TextButton text={'+ Category'} onPress={() => setModalVisible(true)} />
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container: { margin: spacing.$xs },
+  container: {
+    margin: spacing.$xs,
+    flex: 1,
+    justifyContent: 'flex-end'
+  },
   form: {
     backgroundColor: colors.$plainWhite,
     padding: spacing.$xl,

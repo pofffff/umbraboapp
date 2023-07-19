@@ -1,7 +1,7 @@
 import { AppProvider, useAuth } from './context'
 import { AuthSceneView, TabSceneView } from './components'
 
-import React from 'react'
+// import React from 'react'
 
 const Main: React.FC = () => {
   const { authenticated } = useAuth()

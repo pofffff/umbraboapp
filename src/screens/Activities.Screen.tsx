@@ -1,6 +1,6 @@
 import { Category, CategoryCollectionResult } from '../types'
 import {
-  CategoryContainer,
+  CategoryListItem,
   CreateActivity,
   CreateCategory,
   Headline
@@ -26,7 +26,7 @@ export const ActivitiesScreen: React.FC<ActivitiesScreenProps> = () => {
         .filter(nullFilter)
         .map((category: Category) => {
           return (
-            <CategoryContainer
+            <CategoryListItem
               category={category}
               key={`Category-${category.id}`}
             />
@@ -37,7 +37,7 @@ export const ActivitiesScreen: React.FC<ActivitiesScreenProps> = () => {
 
   return (
     <View style={styles.container}>
-      <Headline type={'$xl'} text={'Activities'} />
+      <Headline type={'$m'} text={'Activities'} />
       {data?.categoryCollection.categories && (
         <View style={styles.categoryList}>
           {data?.categoryCollection?.categories?.length > 0 &&
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   actionsWrapper: {
     flex: 1,
     justifyContent: 'center',
-    //alignItems: 'center',
+    // lignItems: 'center',
     flexDirection: 'row',
     bottom: 0
   },

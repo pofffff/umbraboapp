@@ -5,7 +5,7 @@ export const GET_USER = gql`
     user(userId: $userId) {
       userId
       email
-      displayName
+      name
     }
   }
 `
